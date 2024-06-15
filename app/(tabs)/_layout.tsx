@@ -83,7 +83,7 @@ const TabsLayout = () => {
       <Tabs.Screen
         name="index"
         options={{
-          tabBarLabel: "Daily lOG",
+          tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" color={color} size={size} />
           ),
