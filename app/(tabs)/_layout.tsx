@@ -57,7 +57,7 @@ const TabsLayout = () => {
       screenOptions={{
         tabBarActiveTintColor: Colors.primary,
         header: () => (
-          <SafeAreaView className="bg-white flex-row justify-between items-center px-4">
+          <SafeAreaView className="bg-white flex-row justify-between items-center px-4 pt-4">
             <Text className="font-medium text-2xl">{user?.firstName}</Text>
             <TouchableOpacity onLongPress={onSignOut}>
               <Image
