@@ -1,3 +1,5 @@
+import BottleFeeding from "@/components/feed/bottle";
+import BreastFeeding from "@/components/feed/breast";
 import { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
@@ -41,6 +43,10 @@ const FeedingPage = () => {
       </View>
 
       {/* Content */}
+
+      <View className="py-4">
+        {tab === "breast" ? <BreastFeeding /> : <BottleFeeding />}
+      </View>
     </View>
   );
 };
