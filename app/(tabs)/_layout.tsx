@@ -23,10 +23,8 @@ const TabsLayout = () => {
     if (!isLoaded) return;
 
     const isInAuth = segments.includes("(tabs)");
-    console.log("User => ", user);
 
     if (!isSignedIn && isInAuth) {
-      console.log("Not Signed In");
       router.replace("/login");
     }
   }, [isSignedIn, isLoaded]);
