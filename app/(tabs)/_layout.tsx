@@ -10,6 +10,7 @@ import {
   Image,
   Text,
   TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -54,20 +55,28 @@ const TabsLayout = () => {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors.primary,
-        header: () => (
-          <SafeAreaView className="bg-white flex-row justify-between items-center px-4 pt-4">
-            <Text className="font-medium text-2xl">{user?.firstName}</Text>
-            <TouchableOpacity onLongPress={onSignOut}>
-              <Image
-                source={{
-                  uri: user?.imageUrl,
-                }}
-                className="w-10 h-10 rounded-full"
-              />
-            </TouchableOpacity>
 
-            <StatusBar style="dark" />
-          </SafeAreaView>
+        headerLeftContainerStyle: {
+          paddingHorizontal: 24,
+        },
+        headerTitleContainerStyle: { paddingVertical: 20 },
+        headerRightContainerStyle: {
+          paddingHorizontal: 24,
+        },
+
+        headerLeft: () => (
+          <Text className="font-medium text-xl">{user?.firstName}</Text>
+        ),
+        headerTitle: () => <StatusBar style="dark" />,
+        headerRight: () => (
+          <TouchableOpacity onLongPress={onSignOut}>
+            <Image
+              source={{
+                uri: user?.imageUrl,
+              }}
+              className="w-7 h-7 rounded-full"
+            />
+          </TouchableOpacity>
         ),
       }}
     >
