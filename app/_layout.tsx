@@ -51,6 +51,14 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen
+          name="feed"
+          options={{
+            headerTitle: "Add Feed",
+            headerBackTitle: "Back",
+          }}
+        />
+
+        <Stack.Screen
           name="blog/[id]"
           options={{
             presentation: "modal",

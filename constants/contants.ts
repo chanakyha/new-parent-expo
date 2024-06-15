@@ -1,26 +1,31 @@
 export const logs: Log[] = [
   {
     name: "Feed",
+    href: "/feed",
     image: require("@/assets/images/logs/feed.png"),
     topBarImage: require("@/assets/images/topbar/feed.png"),
   },
   {
     name: "Sleep",
+    href: "/sleep",
     image: require("@/assets/images/logs/sleep.png"),
     topBarImage: require("@/assets/images/topbar/sleep.png"),
   },
   {
     name: "Nappy",
+    href: "/nappy",
     image: require("@/assets/images/logs/nappy.png"),
     topBarImage: require("@/assets/images/topbar/nappy.png"),
   },
   {
     name: "Growth",
+    href: "/growth",
     image: require("@/assets/images/logs/growth.png"),
     topBarImage: require("@/assets/images/topbar/growth.png"),
   },
   {
     name: "Health",
+    href: "/health",
     image: require("@/assets/images/logs/health.png"),
     topBarImage: require("@/assets/images/topbar/health.png"),
   },

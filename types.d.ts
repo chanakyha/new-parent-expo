@@ -1,5 +1,6 @@
 type Log = {
   name: string;
+  href: `/${string}`;
   image: ImageSourcePropType;
   topBarImage: ImageSourcePropType;
 };

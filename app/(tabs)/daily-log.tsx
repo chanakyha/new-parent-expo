@@ -1,7 +1,7 @@
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { logs } from "@/constants/contants";
-import { useNavigation } from "expo-router";
+import { Link, useNavigation } from "expo-router";
 
 const Dailylog = () => {
   const navigation = useNavigation();
@@ -25,12 +25,14 @@ const Dailylog = () => {
         numColumns={2}
         renderItem={(log) => {
           return (
-            <TouchableOpacity className="relative shadow-md">
-              <Image source={log.item.image} />
-              <Text className="text-sm font-medium absolute top-1 left-3">
-                {log.item.name}
-              </Text>
-            </TouchableOpacity>
+            <Link href={log.item.href} asChild>
+              <TouchableOpacity className="relative shadow-md">
+                <Image source={log.item.image} />
+                <Text className="text-sm font-medium absolute top-1 left-3">
+                  {log.item.name}
+                </Text>
+              </TouchableOpacity>
+            </Link>
           );
         }}
       />
