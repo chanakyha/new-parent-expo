@@ -4,7 +4,7 @@ import React from "react";
 const IndexPae = () => {
   return (
     <View>
-      <Text>IndexPage</Text>
+      <Text className="text-2xl font-bold text-center">Home Page</Text>
     </View>
   );
 };
