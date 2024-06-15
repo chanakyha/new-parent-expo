@@ -1,4 +1,6 @@
+import { Colors } from "@/constants/Colors";
 import { useAuth, useUser } from "@clerk/clerk-expo";
+import { Ionicons } from "@expo/vector-icons";
 import { Tabs, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
@@ -53,8 +55,9 @@ const TabsLayout = () => {
   return (
     <Tabs
       screenOptions={{
+        tabBarActiveTintColor: Colors.primary,
         header: () => (
-          <SafeAreaView className="bg-white border-b border-[0.5px] pt-4 border-gray-200 shadow-sm flex-row justify-between items-center px-4">
+          <SafeAreaView className="bg-white flex-row justify-between items-center px-4">
             <Text className="font-medium text-2xl">{user?.firstName}</Text>
             <TouchableOpacity onLongPress={onSignOut}>
               <Image
@@ -74,24 +77,36 @@ const TabsLayout = () => {
         name="index"
         options={{
           tabBarLabel: "Daily lOG",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" color={color} size={size} />
+          ),
         }}
       />
       <Tabs.Screen
         name="daily-log"
         options={{
           tabBarLabel: "Daily Log",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="list" color={color} size={size} />
+          ),
         }}
       />
       <Tabs.Screen
         name="memories"
         options={{
           tabBarLabel: "Memories",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="file-tray-full" color={color} size={size} />
+          ),
         }}
       />
       <Tabs.Screen
         name="evolution"
         options={{
           tabBarLabel: "Evolution",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="cellular" color={color} size={size} />
+          ),
         }}
       />
     </Tabs>
