@@ -8,7 +8,7 @@ const Dailylog = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => <Text>Hi</Text>,
+      headerLeft: () => <Text className="font-medium text-xl">Daily Log</Text>,
     });
   }, [navigation]);
   return (
