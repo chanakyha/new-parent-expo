@@ -1,6 +1,7 @@
 import TopBar from "@/components/home/TopBar";
 import { babycareBlogs } from "@/constants/contants";
 import { Ionicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
 import { Image, TouchableOpacity } from "react-native";
 import { ScrollView, Text, View } from "react-native";
 
@@ -42,28 +43,27 @@ const TabOne = () => {
 
         {babycareBlogs.map((blog, index) => {
           return (
-            <TouchableOpacity
-              key={index}
-              className="flex-1 bg-white p-4 rounded-md shadow-x space-y-1"
-            >
-              <Image source={blog.image} className="w-full" />
-              <Text className="text-lg font-medium" numberOfLines={1}>
-                {blog.title}
-              </Text>
-              <Text numberOfLines={2} className="text-xs">
-                {blog.description}
-              </Text>
-              <View className="flex-row space-x-2 items-center pt-2">
-                <View className="bg-dark px-2 py-1 rounded-full">
-                  <Text className="text-sm text-white">Read More</Text>
+            <Link key={index} href={`/blog/${blog.id}`} asChild>
+              <TouchableOpacity className="flex-1 bg-white p-4 rounded-md shadow-x space-y-1">
+                <Image source={blog.image} className="w-full" />
+                <Text className="text-lg font-medium" numberOfLines={1}>
+                  {blog.title}
+                </Text>
+                <Text numberOfLines={2} className="text-xs">
+                  {blog.description}
+                </Text>
+                <View className="flex-row space-x-2 items-center pt-2">
+                  <View className="bg-dark px-2 py-1 rounded-full">
+                    <Text className="text-sm text-white">Read More</Text>
+                  </View>
+                  <View className="bg-dark px-2 py-1 rounded-full">
+                    <Text className="text-sm text-white capitalize">
+                      {blog.type}
+                    </Text>
+                  </View>
                 </View>
-                <View className="bg-dark px-2 py-1 rounded-full">
-                  <Text className="text-sm text-white capitalize">
-                    {blog.type}
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </Link>
           );
         })}
       </ScrollView>
