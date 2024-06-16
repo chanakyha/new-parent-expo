@@ -9,15 +9,12 @@ import {
 } from "react-native";
 import React, { useCallback } from "react";
 import { useWarmUpBrowser } from "@/hooks/useWarmUpBrowser";
-import { useOAuth, useUser } from "@clerk/clerk-expo";
+import { useOAuth } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 
 const LoginPage = () => {
   useWarmUpBrowser();
 
-  const { user } = useUser();
-
-  console.log(user);
   const router = useRouter();
 
   enum Strategy {
@@ -56,7 +53,7 @@ const LoginPage = () => {
       />
       <KeyboardAvoidingView
         behavior="padding"
-        className="p-4 gap-4 flex-1 justify-center"
+        className="justify-center flex-1 gap-4 p-4"
       >
         <Text className="text-2xl font-medium text-center text-primary">
           Sign in to New Parent
@@ -75,7 +72,7 @@ const LoginPage = () => {
           placeholder="Password"
         />
 
-        <TouchableOpacity className="bg-dark justify-center flex-row p-4 rounded-md shadow-2xl border">
+        <TouchableOpacity className="flex-row justify-center p-4 border rounded-md shadow-2xl bg-dark">
           <Text className="font-medium text-white">Login</Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -89,13 +86,13 @@ const LoginPage = () => {
         <View className="flex-row justify-between space-x-2">
           <TouchableOpacity
             onPress={() => onSelectAuth(Strategy.Google)}
-            className="flex-1 justify-center flex-row p-4 rounded-md shadow-2xl border"
+            className="flex-row justify-center flex-1 p-4 border rounded-md shadow-2xl"
           >
             <Text className="font-medium text-dark">Login using Google</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => onSelectAuth(Strategy.Apple)}
-            className="flex-1 justify-center flex-row p-4 rounded-md shadow-2xl border"
+            className="flex-row justify-center flex-1 p-4 border rounded-md shadow-2xl"
           >
             <Text className="font-medium text-dark">Login using Apple</Text>
           </TouchableOpacity>
