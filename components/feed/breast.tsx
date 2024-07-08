@@ -1,4 +1,6 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { Link } from "expo-router";
+import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+
 import { useStopwatch } from "react-timer-hook";
 
 const BreastFeeding = () => {
@@ -34,7 +36,7 @@ const BreastFeeding = () => {
   };
 
   return (
-    <View className="space-y-4">
+    <ScrollView className="h-screen space-y-4">
       <View className="py-20 border-[0.5px] border-gray-300 space-y-6 rounded-lg shadow-sm px-14 bg-secondary">
         {leftMinutes == 0 &&
         rightMinutes == 0 &&
@@ -119,7 +121,25 @@ const BreastFeeding = () => {
       <Text className="text-lg font-medium text-primary">
         Benefits of Breastfeeding
       </Text>
-    </View>
+
+      <View className="flex-row items-center justify-between space-x-4 w-fit">
+        <Image
+          source={require("@/assets/images/feed/breast-feed.png")}
+          className="w-[35%] h-fit "
+        />
+        <View className="w-[60%]">
+          <Text className="">
+            While we talk a lot about your baby's benefits of breastfeeding,
+            there are a lot of benefits for you too!
+          </Text>
+          <TouchableOpacity>
+            <Link href={"/benefits-breast-feeding"}>
+              <Text className="text-right text-blue-600">Read more...</Text>
+            </Link>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 

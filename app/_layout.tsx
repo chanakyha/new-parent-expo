@@ -69,6 +69,23 @@ export default function RootLayout() {
             ),
           }}
         />
+
+        <Stack.Screen
+          name="benefits-breast-feeding"
+          options={{
+            presentation: "modal",
+            headerTitle: "Benefits of Breast Feeding",
+            headerTitleStyle: {
+              color: "#0078A4",
+            },
+            headerLargeTitleShadowVisible: true,
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} />
+              </TouchableOpacity>
+            ),
+          }}
+        />
       </Stack>
     </ClerkProvider>
   );

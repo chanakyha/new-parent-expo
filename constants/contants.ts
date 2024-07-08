@@ -97,3 +97,26 @@ export const babycareBlogs: Blog[] = [
     markdownDescription: markdownText,
   },
 ];
+
+export const benefitsBreasts = `
+While we talk a lot about your baby's benefits of breastfeeding, there are a lot of benefits for you too!
+
+- Mainly, right after birth breastfeeding prevents excessive bleeding after birth and helps to shrink the uterus to pre-pregnancy size sooner
+
+Breastfeeding saves time and money and you don't need any extra time to prepare, it's right there
+
+- Risks of osteoporosis, as well reproductive system and breast cancers are reduced when breastfeeding
+- Your natural weight loss is supported and continues the natural reproductive cycle of conception, pregnancy and childbirth
+
+If you breastfeed, night feedings are much easier and less disruptive Plus: breastfeeding makes you happy? It releases hormones that increase confidence, self-esteem and relaxation and helps mother-baby bonding
+
+And more:
+
+Fewer workdays are lost by parents caring for sick children
+
+- Future healthcare costs are reduced since both mother and baby are healthier throughout their lives
+- Breastfeeding uses only renewable resources and produces only biodegradable wastes - breastfeeding is ecological in its production, consumption and disposal.
+
+_The information is given to you solely for general informational purposes and should not be used in place of personalized medical advice._
+
+`;
