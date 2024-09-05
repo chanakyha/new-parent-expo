@@ -36,7 +36,7 @@ const BreastFeeding = () => {
   };
 
   return (
-    <ScrollView className="h-screen space-y-4">
+    <ScrollView className="flex h-screen space-y-6">
       <View className="py-20 border-[0.5px] border-gray-300 space-y-6 rounded-lg shadow-sm px-14 bg-secondary">
         {leftMinutes == 0 &&
         rightMinutes == 0 &&
@@ -139,6 +139,12 @@ const BreastFeeding = () => {
           </TouchableOpacity>
         </View>
       </View>
+
+      <TouchableOpacity className="w-full p-2 rounded-lg bg-secondary">
+        <Text className="font-medium text-center text-md text-primary">
+          Summary
+        </Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };

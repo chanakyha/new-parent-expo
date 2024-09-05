@@ -1,5 +1,5 @@
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
-import React, { useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { logs } from "@/constants/contants";
 import { Link, useNavigation } from "expo-router";
 
@@ -8,7 +8,7 @@ const Dailylog = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => <Text className="font-medium text-xl">Daily Log</Text>,
+      headerLeft: () => <Text className="text-xl font-medium">Daily Log</Text>,
     });
   }, [navigation]);
   return (
@@ -28,7 +28,7 @@ const Dailylog = () => {
             <Link href={log.item.href} asChild>
               <TouchableOpacity className="relative shadow-md">
                 <Image source={log.item.image} />
-                <Text className="text-sm font-medium absolute top-1 left-3">
+                <Text className="absolute text-sm font-medium top-1 left-3">
                   {log.item.name}
                 </Text>
               </TouchableOpacity>

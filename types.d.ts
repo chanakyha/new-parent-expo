@@ -1,15 +1,17 @@
+import { Href } from "expo-router";
+
 type Log = {
   name: string;
-  href: `/${string}`;
+  href: Href<`/${string}`>;
   image: ImageSourcePropType;
   topBarImage: ImageSourcePropType;
 };
 
-interface Blog {
+type Blog = {
   id: number;
   title: string;
   image: ImageSourcePropType;
   description: string;
   type: string;
   markdownDescription: string;
-}
+};

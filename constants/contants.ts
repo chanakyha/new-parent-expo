@@ -1,3 +1,5 @@
+import { Log, Blog } from "@/types";
+
 export const logs: Log[] = [
   {
     name: "Feed",
@@ -120,3 +122,37 @@ Fewer workdays are lost by parents caring for sick children
 _The information is given to you solely for general informational purposes and should not be used in place of personalized medical advice._
 
 `;
+
+export const guideToBottleFeed = `
+Feeding a baby is a whole new skill to learn, regardless of whether they bottle feed or breastfeed. You are completely responsible for your baby's growth and well-being so it's no wonder it can feel a little overwhelming. Here is what you need to know to get you started.
+
+### What you will need
+- Six bottles with teats and caps
+- Milk, warmed to body temperature
+- A comfortable place to feed
+- Steriliser and bottle brush
+
+Choosing the right teat and bottle
+Teats come in many sizes, flows and materials. You will find that most teats are labelled according to a baby's age, but it is really only an overall indication. If you notice your baby is spluttering or tensing during feeds, it might be a sign that they need a teat with a slower flow.
+
+Choosing the right bottle also comes down to age and specific needs. Look for a bottle that has an anti-colic system to reduce air intake and tummy troubles (most should), and then choose a bottle size that suits your baby's milk intake.
+If you are combining breastfeeding with bottle feeding, you can also opt for teats that mimic the natural shape and feel of the breast.
+
+### How much milk?
+
+By the end of their first week, most babies will need 150-200 ml of milk per kilo of their weight (2.5-3 oz of milk per pound), and this will be the general rule of thumb until your baby is six months old.
+Although it is tempting to stick to this, try not to be too strict. Volumes will naturally vary from feed to feed and you will know when your little one's tummy is full by watching for signs, such as looking sleepy or when their body feels heavy and relaxed.
+
+### What to do
+
+First, find a position you can maintain for the whole feed. For example, you could cradle them in the crook of your arm or sit them upright, so their back is against your stomach.
+When you are ready, encourage your baby to open wide by touching the teat of the bottle to your baby's lower lip. As your baby opens their mouth, gently introduce the teat, making sure your baby's tongue is down. Tip the bottle so the milk fills the teat to prevent them from taking in air as they drink.
+As you continue, let your baby pause and take breaks as they need to.
+
+### After the feed
+
+Sometimes your baby will take in air as they drink. You can relieve any discomfort by burping them at the end of the feed or mid-feed.
+You can either place your baby on your shoulder and gently rub their back. Or, you can try sitting them on your lap slightly tilted forward, supporting their chin and neck with one hand while rubbing their back with your other hand.
+If you feel like you are struggling to bottle feed your baby, don't be afraid to ask for help. Reach out to your support network, especially people who have been here before (your parents, for example). Your healthcare professional should always be able to offer you advice, guidance and reassurance too.
+
+The information is given to you solely for general informational purposes and should not be used in place of personalized medical advice.`;

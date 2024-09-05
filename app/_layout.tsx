@@ -57,6 +57,13 @@ export default function RootLayout() {
             headerBackTitle: "Back",
           }}
         />
+        <Stack.Screen
+          name="sleep"
+          options={{
+            headerTitle: "Sleeping",
+            headerBackTitle: "Back",
+          }}
+        />
 
         <Stack.Screen
           name="blog/[id]"
@@ -75,6 +82,22 @@ export default function RootLayout() {
           options={{
             presentation: "modal",
             headerTitle: "Benefits of Breast Feeding",
+            headerTitleStyle: {
+              color: "#0078A4",
+            },
+            headerLargeTitleShadowVisible: true,
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} />
+              </TouchableOpacity>
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="guide-to-bottle-feed"
+          options={{
+            presentation: "modal",
+            headerTitle: "Guide to Bottle Feeding",
             headerTitleStyle: {
               color: "#0078A4",
             },
