@@ -11,10 +11,11 @@ import React, { useCallback } from "react";
 import { useWarmUpBrowser } from "@/hooks/useWarmUpBrowser";
 import { useOAuth } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/firebase";
 
 const LoginPage = () => {
   useWarmUpBrowser();
-
   const router = useRouter();
 
   enum Strategy {
@@ -35,7 +36,16 @@ const LoginPage = () => {
       const { createdSessionId, setActive } = await selectedAuth();
       if (createdSessionId) {
         setActive!({ session: createdSessionId }).then(() => {
+          console.log(createdSessionId);
           router.replace("/(tabs)");
+          const docRef = doc(db, "users", createdSessionId);
+          setDoc(
+            docRef,
+            { createdSessionId },
+            {
+              merge: true,
+            }
+          );
         });
       }
     } catch (err) {
