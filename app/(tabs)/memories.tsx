@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, Image, Modal } from "react-native";
 import { Camera } from "expo-camera/legacy";
 import * as ImagePicker from "expo-image-picker";
-import { styled } from "nativewind";
+import { useUser } from "@clerk/clerk-expo";
+import { storage } from "@/firebase";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 const memoryCategories = [
   { id: "1", title: "I'm home!" },
@@ -30,6 +32,8 @@ const Memories: React.FC = () => {
   const [cameraRef, setCameraRef] = useState<Camera | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const { user } = useUser();
 
   useEffect(() => {
     (async () => {
@@ -70,6 +74,8 @@ const Memories: React.FC = () => {
       setImages((prev) => ({ ...prev, [selectedCategory]: imagePreview }));
       setImagePreview(null);
       setSelectedCategory(null);
+
+      uploadToBucket(imagePreview);
     }
   };
 
@@ -77,33 +83,72 @@ const Memories: React.FC = () => {
     setImagePreview(null);
     setCameraVisible(true);
   };
+  const uploadToBucket = async (
+    uri: string,
+    fileType?: "video" | "image" | undefined
+  ) => {
+    if (!user) return;
+
+    const filename = uri.split("/").slice(-1)[0];
+    const storageRef = ref(storage, `media/${user.id}/${filename}`);
+
+    try {
+      const response = await fetch(uri);
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch file ${response.statusText}`);
+      }
+
+      const mediaBlob = await response.blob();
+      const upload = uploadBytesResumable(storageRef, mediaBlob);
+
+      return new Promise((resolve, reject) => {
+        upload.on(
+          "state_changed",
+          (snapshot) => {
+            console.log(snapshot.bytesTransferred, "/", snapshot.totalBytes);
+          },
+          (error) => reject(error),
+          () => {
+            getDownloadURL(upload.snapshot.ref)
+              .then((url) =>
+                resolve({ filename, fileUrl: url, ownerId: user.id, fileType })
+              )
+              .catch((e) => console.log(e));
+          }
+        );
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   if (hasPermission === null) {
     return (
-      <View className="flex-1 items-center justify-center">
+      <View className="items-center justify-center flex-1">
         <Text>Requesting camera permissions...</Text>
       </View>
     );
   }
   if (hasPermission === false) {
     return (
-      <View className="flex-1 items-center justify-center">
+      <View className="items-center justify-center flex-1">
         <Text>No access to camera</Text>
       </View>
     );
   }
 
   return (
-    <View className="flex-1 bg-white p-4">
+    <View className="flex-1 p-4 bg-white">
       {/* Header */}
-      <Text className="text-xl font-semibold text-gray-800 mb-4">Memories</Text>
+      <Text className="mb-4 text-xl font-semibold text-gray-800">Memories</Text>
 
       {/* Memory Categories Grid */}
-      <View className="flex flex-wrap flex-row justify-between">
+      <View className="flex flex-row flex-wrap justify-between">
         {memoryCategories.map((item) => (
           <TouchableOpacity
             key={item.id}
-            className="w-1/3 h-32 bg-gray-200 rounded-lg m-1 items-center justify-center border border-gray-300"
+            className="items-center justify-center w-1/3 h-32 m-1 bg-gray-200 border border-gray-300 rounded-lg"
             onPress={() => handlePickImage(item.id)}
             onLongPress={() => handleOpenCamera(item.id)}
           >
@@ -115,7 +160,7 @@ const Memories: React.FC = () => {
             ) : (
               <>
                 <Text className="text-2xl text-blue-400">+</Text>
-                <Text className="text-center mt-2">{item.title}</Text>
+                <Text className="mt-2 text-center">{item.title}</Text>
               </>
             )}
           </TouchableOpacity>
@@ -125,17 +170,17 @@ const Memories: React.FC = () => {
       {/* Camera Modal */}
       {cameraVisible && (
         <Modal animationType="slide" transparent={true} visible={cameraVisible}>
-          <View className="flex-1 bg-black justify-center items-center">
+          <View className="items-center justify-center flex-1 bg-black">
             <Camera className="w-full h-full" ref={(ref) => setCameraRef(ref)}>
-              <View className="absolute bottom-10 flex-row justify-evenly w-full px-6">
+              <View className="absolute flex-row w-full px-6 bottom-10 justify-evenly">
                 <TouchableOpacity
-                  className="bg-white p-4 rounded-lg"
+                  className="p-4 bg-white rounded-lg"
                   onPress={handleTakePhoto}
                 >
                   <Text className="text-black">Capture</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  className="bg-white p-4 rounded-lg"
+                  className="p-4 bg-white rounded-lg"
                   onPress={() => setCameraVisible(false)}
                 >
                   <Text className="text-black">Cancel</Text>
@@ -153,26 +198,26 @@ const Memories: React.FC = () => {
           transparent={true}
           visible={!!imagePreview}
         >
-          <View className="flex-1 bg-black justify-center items-center">
+          <View className="items-center justify-center flex-1 bg-black">
             <Image
               source={{ uri: imagePreview }}
-              className="w-3/4 h-3/4 rounded-lg mb-4"
+              className="w-3/4 mb-4 rounded-lg h-3/4"
             />
-            <View className="flex-row justify-evenly w-full px-4 py-12">
+            <View className="flex-row w-full px-4 py-12 justify-evenly">
               <TouchableOpacity
-                className="bg-white p-4 rounded-lg m-2"
+                className="p-4 m-2 bg-white rounded-lg"
                 onPress={handleSaveImage}
               >
                 <Text className="text-black">Use Photo</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                className="bg-white p-4 rounded-lg m-2"
+                className="p-4 m-2 bg-white rounded-lg"
                 onPress={handleRetakePhoto}
               >
                 <Text className="text-black">Retake</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                className="bg-white p-4 rounded-lg m-2"
+                className="p-4 m-2 bg-white rounded-lg"
                 onPress={() => setImagePreview(null)}
               >
                 <Text className="text-black">Cancel</Text>

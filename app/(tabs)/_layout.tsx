@@ -10,7 +10,6 @@ import {
   Image,
   Text,
   TouchableOpacity,
-  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -23,7 +22,7 @@ const TabsLayout = () => {
   useEffect(() => {
     if (!isLoaded) return;
 
-    const isInAuth = segments.includes("(tabs)");
+    const isInAuth = segments.toString().includes("(tabs)");
 
     if (!isSignedIn && isInAuth) {
       router.replace("/login");
@@ -65,7 +64,7 @@ const TabsLayout = () => {
         },
 
         headerLeft: () => (
-          <Text className="font-medium text-xl">{user?.firstName}</Text>
+          <Text className="text-xl font-medium">{user?.firstName}</Text>
         ),
         headerTitle: () => <StatusBar style="dark" />,
         headerRight: () => (
@@ -74,7 +73,7 @@ const TabsLayout = () => {
               source={{
                 uri: user?.imageUrl,
               }}
-              className="w-7 h-7 rounded-full"
+              className="rounded-full w-7 h-7"
             />
           </TouchableOpacity>
         ),
